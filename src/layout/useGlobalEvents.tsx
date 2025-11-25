@@ -28,12 +28,14 @@ import { useContactStore } from "@/store/contact";
 import { feedbackToast } from "@/utils/common";
 import { initStore } from "@/utils/imCommon";
 import { clearIMProfile, getIMToken, getIMUserID } from "@/utils/storage";
+import useMessageNotification from "@/hooks/useMessageNotification";
 
 import { IMSDK } from "./MainContentWrap";
 
 export function useGlobalEvent() {
   const navigate = useNavigate();
   const resume = useRef(false);
+  const { handleNewMessageNotification } = useMessageNotification();
 
   // user
   const updateSyncState = useUserStore((state) => state.updateSyncState);
@@ -261,7 +263,11 @@ export function useGlobalEvent() {
     if (useUserStore.getState().syncState === "loading" || resume.current) {
       return;
     }
-    data.map((message) => handleNewMessage(message));
+    data.map((message) => {
+      handleNewMessage(message);
+      // 处理新消息通知（系统通知+提示音）
+      handleNewMessageNotification(message);
+    });
   };
 
   const revokedMessageHandler = ({ data }: WSEvent<RevokedInfo>) => {
