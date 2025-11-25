@@ -1,5 +1,5 @@
 {
-  "name": "OpenCorp-Base",
+  "name": "9Zhou-IM",
   "version": "1.0.0",
   "main": "dist-electron/main/index.js",
   "description": "OpenIM PC Client.",

@@ -2,8 +2,8 @@
  * @see https://www.electron.build/configuration/configuration
  */
 {
-  appId: "io.opencorp.desktop.base",
-  productName: "OpenCorp-Base",
+  appId: "io.9Zhou-IM.desktop.base",
+  productName: "9Zhou-IM",
   asar: true,
   asarUnpack: ["**/*.node"],
   extends: null,
@@ -68,7 +68,7 @@
   linux: {
     icon: "./dist/icons/icon.png",
     target: "deb",
-    maintainer: "opencorp-base",
+    maintainer: "9Zhou-IM",
     artifactName: "${productName}_${version}_${arch}.${ext}",
     extraResources: [
       {
@@ -89,6 +89,6 @@
     createDesktopShortcut: true,
     createStartMenuShortcut: true,
     deleteAppDataOnUninstall: true,
-    shortcutName: "OpenCorp-Base",
+    shortcutName: "9Zhou-IM",
   }
 }
