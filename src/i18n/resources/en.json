@@ -376,7 +376,11 @@
     "forbidAddMember": "Forbidden to add group members as friends",
     "applyNeedInvite": "Group member invitation doesn't need verification",
     "applyNeedVerification": "Verification message required",
-    "applyAll": "Allow everyone to join the group"
+    "applyAll": "Allow everyone to join the group",
+    "customService": "Customer Service",
+    "customServiceList": "Customer Service List",
+    "getCustomServiceListFailed": "Failed to get customer service list!",
+    "getConversationFailed": "Failed to get conversation!"
   },
   "empty": {
     "noMoments": "No moments available",

@@ -377,7 +377,11 @@
     "forbidAddMember": "不允许添加群成员为好友",
     "applyNeedInvite": "群成员邀请无需验证",
     "applyNeedVerification": "需要发送验证消息",
-    "applyAll": "允许所有人加群"
+    "applyAll": "允许所有人加群",
+    "customService": "客服",
+    "customServiceList": "客服列表",
+    "getCustomServiceListFailed": "获取客服列表失败！",
+    "getConversationFailed": "获取会话失败！"
   },
   "empty": {
     "noMoments": "暂无动态",
