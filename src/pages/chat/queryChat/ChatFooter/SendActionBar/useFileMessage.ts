@@ -37,6 +37,24 @@ export function useFileMessage() {
     return (await IMSDK.createImageMessageByFile(options)).data;
   };
 
+  const getFileMessage = async (file: FileWithPath) => {
+    if (window.electronAPI) {
+      const fileMessage = (await IMSDK.createFileMessageFromFullPath({
+        filePath: file.path!,
+        fileName: file.name,
+      })).data;
+      return fileMessage;
+    }
+    
+    const options = {
+      file,
+      fileName: file.name,
+      fileSize: file.size,
+    };
+
+    return (await IMSDK.createFileMessageByFile(options)).data;
+  };
+
   const getPicInfo = (file: File): Promise<HTMLImageElement> =>
     new Promise((resolve, reject) => {
       const _URL = window.URL || window.webkitURL;
@@ -49,6 +67,7 @@ export function useFileMessage() {
 
 
   return {
-    getImageMessage
+    getImageMessage,
+    getFileMessage
   };
 }

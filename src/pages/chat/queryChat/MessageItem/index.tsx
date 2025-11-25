@@ -11,6 +11,7 @@ import styles from "./message-item.module.scss";
 import MessageItemErrorBoundary from "./MessageItemErrorBoundary";
 import MessageSuffix from "./MessageSuffix";
 import TextMessageRender from "./TextMessageRender";
+import FileMessageRender from "./FileMessageRender";
 
 export interface IMessageItemProps {
   message: MessageItemType;
@@ -23,6 +24,7 @@ export interface IMessageItemProps {
 const components: Record<number, FC<IMessageItemProps>> = {
   [MessageType.TextMessage]: TextMessageRender,
   [MessageType.PictureMessage]: MediaMessageRender,
+  [MessageType.FileMessage]: FileMessageRender,
 };
 
 const MessageItem: FC<IMessageItemProps> = ({

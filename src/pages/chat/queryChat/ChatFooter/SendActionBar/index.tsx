@@ -9,6 +9,7 @@ import React from "react";
 
 import image from "@/assets/images/chatFooter/image.png";
 import rtc from "@/assets/images/chatFooter/rtc.png";
+import file from "@/assets/images/chatFooter/file.png";
 
 import { SendMessageParams } from "../useSendMessage";
 import CallPopContent from "./CallPopContent";
@@ -24,6 +25,14 @@ const sendActionList = [
     placement: undefined,
   },
   {
+    title: t("placeholder.file"),
+    icon: file,
+    key: "file",
+    accept: "*/*",
+    comp: null,
+    placement: undefined,
+  },
+  {
     title: t("placeholder.call"),
     icon: rtc,
     key: "rtc",
@@ -35,15 +44,18 @@ const sendActionList = [
 
 i18n.on("languageChanged", () => {
   sendActionList[0].title = t("placeholder.image");
-  sendActionList[1].title = t("placeholder.call");
+  sendActionList[1].title = t("placeholder.file");
+  sendActionList[2].title = t("placeholder.call");
 });
 
 const SendActionBar = ({
   sendMessage,
   getImageMessage,
+  getFileMessage,
 }: {
   sendMessage: (params: SendMessageParams) => Promise<void>;
   getImageMessage: (file: File) => Promise<MessageItem>;
+  getFileMessage: (file: File) => Promise<MessageItem>;
 }) => {
   const [visibleState, setVisibleState] = useState(false);
   const isGroupSession = useConversationStore(
@@ -54,6 +66,13 @@ const SendActionBar = ({
 
   const fileHandle = async (options: UploadRequestOption) => {
     const message = await getImageMessage(options.file as File);
+    sendMessage({
+      message,
+    });
+  };
+
+  const generalFileHandle = async (options: UploadRequestOption) => {
+    const message = await getFileMessage(options.file as File);
     sendMessage({
       message,
     });
@@ -85,7 +104,7 @@ const SendActionBar = ({
             popProps={popProps}
             key={action.key}
             accept={action.accept}
-            fileHandle={fileHandle}
+            fileHandle={action.key === "file" ? generalFileHandle : fileHandle}
           >
             <div
               className={clsx("flex cursor-pointer items-center last:mr-0", {
